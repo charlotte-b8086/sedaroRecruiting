@@ -5,7 +5,7 @@ from operator import __or__
 import subprocess
 import json
 
-from modsim import agents
+from modsimPropMass import agents
 from store import QRangeStore
 
 def parse_query(query):

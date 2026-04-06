@@ -56,15 +56,11 @@ Query syntax:
 agents = {
     'Body1': [
         {
-           'consumed': '''(
-                prev!(timeStep),
-                prev!(position),
+            'consumed': '''(
                 prev!(velocity),
-                agent!(Body2).position,
-                agent!(Body2).mass,
             )''',
             'produced': '''velocity''',
-            'function': propagate_velocity,
+            'function': identity,
         },
         {
             'consumed': '''(

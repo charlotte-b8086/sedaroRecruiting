@@ -27,7 +27,8 @@ def propagate_position(time_step, position, velocity):
 
     return {'x': r_self[0], 'y': r_self[1], 'z': r_self[2]}
 
-def propagate_mass(mass):
+def propagate_mass(oldMass, oldVel, vel):
+    mass = oldMass*np.exp(-1*np.linalg.norm(np.array(list(oldVel.values()))-np.array(list(vel.values()))))
     return mass
 
 def identity(arg):
@@ -78,6 +79,8 @@ agents = {
         {
             'consumed': '''(
                 prev!(mass),
+                prev!(velocity),
+                velocity,
             )''',
             'produced': '''mass''',
             'function': propagate_mass,
@@ -122,6 +125,8 @@ agents = {
         {
             'consumed': '''(
                 prev!(mass),
+                prev!(velocity),
+                velocity,
             )''',
             'produced': '''mass''',
             'function': propagate_mass,
